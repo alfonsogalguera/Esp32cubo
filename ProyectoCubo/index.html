@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+    <head>
+        <link rel="stylesheet" href="estilos.css">
+        <meta charset="utf-8">
+        <title>Iot 1</title>
+        <div class="img">
+        <div id="Encabezado"><h1> Cubo de leds 4x4x4</h1></div>
+        <div class="cuerpo">
+        <div id="estado"><h3>La materia de Integración de Sistemas y Arquitecturas nos aporto los conocimientos 
+            necesarios para poder adentrarnos en el tema del internet de las cosas, haciendo practicas y 
+        proporcionandonos este reto de proyecto final con el cubo de leds 4x4x4 utilizando el concepto de IoT 
+    haciendo que este haga diferentes patrones con solicitudes de usuario. </h3></div> 
+        <div id="display"> 
+        <h1>Prender todos</h1>
+        <button type="button" onclick="command(1)">Encender</button>
+
+        <h1>Alternar</h1>
+        <button type="button" onclick="command(2)">Encender</button>
+
+        <h1>De lado a lado</h1>
+        <button type="button" onclick="command(3)">Encender</button>
+
+        <h1>apagar 1</h1>
+        <button type="button" onclick="command(4)">Encender</button>
+
+        <h1>Apagar todos</h1>
+        <button type="button" onclick="command(0)">Apagar</button> <br>
+    </div>
+    </div>
+    <footer>
+        <h5>Profesor: Alfredo Toriz Palacios</h5> Equipo 12 <br>Arturo Riveros<br> Alfonso Galguera<br> Ricardo Gutierrez    <br>            
+    </footer>
+    
+</div>
+
+    </head>
+
+    <body>
+        <div id="display"> </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
+
+        <script type="text/javascript">
+            var clientId = 'client_id_' + Math.floor((Math.random() * 1000000) + 1);
+            client = new Paho.MQTT.Client("hairdresser.cloudmqtt.com", 35476, clientId);
+
+            client.onConnectionLost = onConnectionLost;
+            client.onMessageArrived = onMessageArrived;
+
+            var options = {
+                useSSL: true,
+                userName: "qudxvewe",
+                password: "W2V2LvCJ715s",
+                onSuccess:onConnect,
+                onFailure:doFail
+            }
+
+        client.connect(options);
+
+        function onConnect(){
+            console.log("Conexion exitosa");
+            $("#status").html("Conexion establecida");
+            client.subscribe("salidaTony");
+        }
+
+        function onMessageArrived(message){
+            console.log("Un mensaje ha llegado: " + message.payloadString);
+            $("#display").html(message.payloadString);
+        }
+
+        function doFail(e){
+            console.log(e);
+        }
+
+        function onConnectionLost(responseObject){
+            if(responseObject.errorCode !== 0){
+                console.log("onConnectionLost: " + responseObject.errorMessage);
+            }
+        }
+
+        function command(value) {
+            console.log(value);
+            message = new Paho.MQTT.Message(value + "");
+            message.destinationName = "entradaTony";
+            client.send(message);
+        }
+    </script>
+    </body>
