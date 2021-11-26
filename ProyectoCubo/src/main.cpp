@@ -4,12 +4,27 @@
 #include <SPI.h>
 
 static const uint8_t BUILTIN_LED = 2;
+const int GPIO_PIN_NUMBER_1 = 1;
+const int GPIO_PIN_NUMBER_2 = 2;
+const int GPIO_PIN_NUMBER_4 = 4;
+const int GPIO_PIN_NUMBER_5 = 5;
+const int GPIO_PIN_NUMBER_12 = 12;
+const int GPIO_PIN_NUMBER_13 = 13;
+const int GPIO_PIN_NUMBER_14 = 14;
 const int GPIO_PIN_NUMBER_15 = 15;
 const int GPIO_PIN_NUMBER_18 = 18;
 const int GPIO_PIN_NUMBER_19 = 19;
 const int GPIO_PIN_NUMBER_21 = 21;
 const int GPIO_PIN_NUMBER_22 = 22;
 const int GPIO_PIN_NUMBER_23 = 23;
+const int GPIO_PIN_NUMBER_25 = 25;
+const int GPIO_PIN_NUMBER_26 = 26;
+const int GPIO_PIN_NUMBER_27 = 27;
+const int GPIO_PIN_NUMBER_32 = 32;
+const int GPIO_PIN_NUMBER_33 = 33;
+const int GPIO_PIN_NUMBER_34 = 34;
+const int GPIO_PIN_NUMBER_35 = 35;
+
 
 // const char* ssid = "CONFECCIONES LUMA";
 // const char* password = "eEnqN8gjGL";
@@ -73,20 +88,48 @@ void callback(char* topic, byte* payload, unsigned int lenght){
   }
 
   if((char)payload[0] == '0') {
+    digitalWrite(GPIO_PIN_NUMBER_1, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_2, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_4, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_5, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_12, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_13, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_14, LOW);
     digitalWrite(GPIO_PIN_NUMBER_15, LOW);
     digitalWrite(GPIO_PIN_NUMBER_18, LOW);
     digitalWrite(GPIO_PIN_NUMBER_19, LOW);
     digitalWrite(GPIO_PIN_NUMBER_21, LOW);
     digitalWrite(GPIO_PIN_NUMBER_22, LOW);
     digitalWrite(GPIO_PIN_NUMBER_23, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_25, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_26, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_27, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_32, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_33, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_34, LOW);
+    digitalWrite(GPIO_PIN_NUMBER_35, LOW);
     Serial.println("\n Led apagado");
   } else if((char)payload[0] == '1'){
+    digitalWrite(GPIO_PIN_NUMBER_1, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_2, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_4, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_5, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_12, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_13, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_14, HIGH);
     digitalWrite(GPIO_PIN_NUMBER_15, HIGH);
     digitalWrite(GPIO_PIN_NUMBER_18, HIGH);
     digitalWrite(GPIO_PIN_NUMBER_19, HIGH);
     digitalWrite(GPIO_PIN_NUMBER_21, HIGH);
     digitalWrite(GPIO_PIN_NUMBER_22, HIGH);
     digitalWrite(GPIO_PIN_NUMBER_23, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_25, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_26, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_27, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_32, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_33, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_34, HIGH);
+    digitalWrite(GPIO_PIN_NUMBER_35, HIGH);
     Serial.println("\n Led prendido");
   } else if((char)payload[0] == '2') {
     delay(500);
@@ -246,8 +289,8 @@ void reconnect(){
 
     if (client.connect(clientId.c_str(), mqtt_user, mqtt_pass)) {
       Serial.println("Conexión a MQTT exitosa!!!");
-      client.publish("salidaTony", "primer mensaje");
-      client.subscribe("entradaTony");
+      client.publish("salida", "primer mensaje");
+      client.subscribe("entrada");
     } else {
       Serial.println("Falló la conexion...");
       Serial.print(client.state());
@@ -262,19 +305,68 @@ void reconnect(){
 void setup() {
 
   // LED, puerto del led de la esp32
+const int GPIO_PIN_NUMBER_1 = 1;
+const int GPIO_PIN_NUMBER_2 = 2;
+const int GPIO_PIN_NUMBER_4 = 4;
+const int GPIO_PIN_NUMBER_5 = 5;
+const int GPIO_PIN_NUMBER_12 = 12;
+const int GPIO_PIN_NUMBER_13 = 13;
+const int GPIO_PIN_NUMBER_14 = 14;
+const int GPIO_PIN_NUMBER_15 = 15;
+const int GPIO_PIN_NUMBER_18 = 18;
+const int GPIO_PIN_NUMBER_19 = 19;
+const int GPIO_PIN_NUMBER_21 = 21;
+const int GPIO_PIN_NUMBER_22 = 22;
+const int GPIO_PIN_NUMBER_23 = 23;
+const int GPIO_PIN_NUMBER_25 = 25;
+const int GPIO_PIN_NUMBER_26 = 26;
+const int GPIO_PIN_NUMBER_27 = 27;
+const int GPIO_PIN_NUMBER_32 = 32;
+const int GPIO_PIN_NUMBER_33 = 33;
+const int GPIO_PIN_NUMBER_34 = 34;
+const int GPIO_PIN_NUMBER_35 = 35;
+
+  pinMode(GPIO_PIN_NUMBER_1, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_2, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_4, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_5, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_12, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_13, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_14, OUTPUT);
   pinMode(GPIO_PIN_NUMBER_15, OUTPUT);
   pinMode(GPIO_PIN_NUMBER_18, OUTPUT);
   pinMode(GPIO_PIN_NUMBER_19, OUTPUT);
   pinMode(GPIO_PIN_NUMBER_21, OUTPUT);
   pinMode(GPIO_PIN_NUMBER_22, OUTPUT);
   pinMode(GPIO_PIN_NUMBER_23, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_25, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_26, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_27, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_32, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_33, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_34, OUTPUT);
+  pinMode(GPIO_PIN_NUMBER_35, OUTPUT);
 
+  digitalWrite(GPIO_PIN_NUMBER_1, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_2, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_4, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_5, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_12, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_13, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_14, LOW);
   digitalWrite(GPIO_PIN_NUMBER_15, LOW);
   digitalWrite(GPIO_PIN_NUMBER_18, LOW);
   digitalWrite(GPIO_PIN_NUMBER_19, LOW);
   digitalWrite(GPIO_PIN_NUMBER_21, LOW);
   digitalWrite(GPIO_PIN_NUMBER_22, LOW);
   digitalWrite(GPIO_PIN_NUMBER_23, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_25, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_26, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_27, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_32, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_33, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_34, LOW);
+  digitalWrite(GPIO_PIN_NUMBER_35, LOW);
 
   Serial.begin(9600);
   setup_wifi();
