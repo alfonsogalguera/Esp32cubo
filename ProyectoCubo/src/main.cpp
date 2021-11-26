@@ -274,6 +274,10 @@ void callback(char* topic, byte* payload, unsigned int lenght){
     delay(500);
     digitalWrite(GPIO_PIN_NUMBER_19, HIGH);
     Serial.println("\n Led apagado diferente");
+  }else if((char)payload[0] == '5'){
+
+  }else if((char)payload[0] == '6'){
+
   }
 
   Serial.println();
@@ -305,26 +309,6 @@ void reconnect(){
 void setup() {
 
   // LED, puerto del led de la esp32
-const int GPIO_PIN_NUMBER_1 = 1;
-const int GPIO_PIN_NUMBER_2 = 2;
-const int GPIO_PIN_NUMBER_4 = 4;
-const int GPIO_PIN_NUMBER_5 = 5;
-const int GPIO_PIN_NUMBER_12 = 12;
-const int GPIO_PIN_NUMBER_13 = 13;
-const int GPIO_PIN_NUMBER_14 = 14;
-const int GPIO_PIN_NUMBER_15 = 15;
-const int GPIO_PIN_NUMBER_18 = 18;
-const int GPIO_PIN_NUMBER_19 = 19;
-const int GPIO_PIN_NUMBER_21 = 21;
-const int GPIO_PIN_NUMBER_22 = 22;
-const int GPIO_PIN_NUMBER_23 = 23;
-const int GPIO_PIN_NUMBER_25 = 25;
-const int GPIO_PIN_NUMBER_26 = 26;
-const int GPIO_PIN_NUMBER_27 = 27;
-const int GPIO_PIN_NUMBER_32 = 32;
-const int GPIO_PIN_NUMBER_33 = 33;
-const int GPIO_PIN_NUMBER_34 = 34;
-const int GPIO_PIN_NUMBER_35 = 35;
 
   pinMode(GPIO_PIN_NUMBER_1, OUTPUT);
   pinMode(GPIO_PIN_NUMBER_2, OUTPUT);
